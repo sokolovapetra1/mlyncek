@@ -689,9 +689,19 @@
       /* GALLERY */
       .gallery-section { padding: 32px 0 40px; }
       .gallery-item { flex: 0 0 calc(50% - 6px); }
-      .gallery-btn-prev { left: 8px; }
-      .gallery-btn-next { right: 8px; }
-      .gallery-btn { background: rgba(255,255,255,0.9); }
+      .gallery-btn {
+        background: none;
+        border: none;
+        box-shadow: none;
+        color: rgba(255,255,255,0.85);
+        text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        font-size: 36px;
+        width: 36px;
+        height: 36px;
+      }
+      .gallery-btn-prev { left: 6px; }
+      .gallery-btn-next { right: 6px; }
+      .gallery-btn:hover { background: none; transform: translateY(-50%); }
 
       /* MENU */
       .menu-section { padding: 40px 24px 60px; }
@@ -1006,6 +1016,23 @@
       const wrapper = document.getElementById('galleryTrack').closest('.gallery-carousel');
       wrapper.addEventListener('mouseenter', () => clearInterval(galleryTimer));
       wrapper.addEventListener('mouseleave', () => startGalleryAuto());
+
+      // Swipe
+      let touchStartX = 0;
+      wrapper.addEventListener('touchstart', e => {
+        touchStartX = e.touches[0].clientX;
+        clearInterval(galleryTimer);
+      }, { passive: true });
+
+      wrapper.addEventListener('touchend', e => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) {
+          slideGallery(diff > 0 ? 1 : -1);
+          resetGalleryAuto();
+        } else {
+          startGalleryAuto();
+        }
+      }, { passive: true });
     });
 
     function openLightbox(src) {
