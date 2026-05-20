@@ -14,19 +14,19 @@
     :root {
       --beige:      #F2E8DC;
       --beige-dark: #E8D9C8;
-      --pink:       #E6D2CB;
+      --pink:       #ffffff;
       --blue:       #A1C1DD;
       --blue-dark:  #89A4BC;
       --red:        #C5362C;
       --dark:       #141914;
-      --white:      #FDFAF7;
+      --white:      #ffffff;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Open Sans', sans-serif;
-      background-color: var(--beige);
+      background-color: #ffffff;
       color: var(--dark);
       font-size: 16px;
       line-height: 1.65;
@@ -319,7 +319,7 @@
     /* ── GALLERY ─────────────────────────────────── */
     .gallery-section {
       padding: 40px 48px 60px;
-      background: var(--pink);
+      background: var(--beige);
     }
 
     .gallery-header {
@@ -358,6 +358,7 @@
       overflow: hidden;
       cursor: pointer;
       position: relative;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.22);
     }
 
     .gallery-item::after {
@@ -664,18 +665,51 @@
 
     .lightbox-close:hover { opacity: 1; }
 
+    /* ── HAMBURGER ───────────────────────────────── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--dark);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
     /* ── RESPONSIVE ──────────────────────────────── */
     @media (max-width: 768px) {
       /* NAV */
-      nav { padding: 12px 20px; }
+      nav { padding: 12px 20px; flex-wrap: wrap; }
       .nav-logo img { height: 48px; }
-      .nav-links { gap: 16px; }
-      .nav-links a { font-size: 12px; }
+      .nav-hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 0;
+        padding: 8px 0 16px;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 14px; padding: 12px 0; border-bottom: 1px solid var(--beige-dark); }
+      .nav-links li:last-child a { border-bottom: none; }
 
       /* HERO */
       .hero { grid-template-columns: 1fr; min-height: unset; height: auto; padding-top: 72px; }
       .hero-text { padding: 40px 24px 32px; }
-      .hero-title { font-size: 32px; }
+      .hero-title { font-size: 38px; }
       .hero-desc { font-size: 15px; }
       .hero-image { height: 100vw; }
 
@@ -729,11 +763,14 @@
     <a href="#" class="nav-logo">
       <img src="profilovka2-01_crop.png" alt="Mlynček logo" />
     </a>
-    <ul class="nav-links">
-      <li><a href="#o-nas">O nás</a></li>
-      <li><a href="#ponuka">Ponuka</a></li>
-      <li><a href="#kontakt">Kontakt</a></li>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#o-nas" onclick="closeNav()">O nás</a></li>
+      <li><a href="#ponuka" onclick="closeNav()">Ponuka</a></li>
+      <li><a href="#kontakt" onclick="closeNav()">Kontakt</a></li>
     </ul>
+    <button class="nav-hamburger" id="navHamburger" onclick="toggleNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
   <!-- HERO -->
@@ -979,6 +1016,16 @@
   </div>
 
   <script>
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('open');
+      document.getElementById('navHamburger').classList.toggle('open');
+    }
+
+    function closeNav() {
+      document.getElementById('navLinks').classList.remove('open');
+      document.getElementById('navHamburger').classList.remove('open');
+    }
+
     function toggleMenu(btn) {
       const cat = btn.closest('.menu-category');
       const isOpen = cat.classList.contains('open');
