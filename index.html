@@ -14,10 +14,11 @@
     :root {
       --beige:      #F2E8DC;
       --beige-dark: #E8D9C8;
-      --blue:       #85D9E9;
-      --blue-dark:  #5EC8DC;
+      --pink:       #E6D2CB;
+      --blue:       #A1C1DD;
+      --blue-dark:  #89A4BC;
       --red:        #C5362C;
-      --dark:       #2A201A;
+      --dark:       #141914;
       --white:      #FDFAF7;
     }
 
@@ -54,7 +55,7 @@
     }
 
     .nav-logo img {
-      height: 78px;
+      height: 56px;
       width: auto;
     }
 
@@ -78,10 +79,11 @@
 
     /* ── HERO ────────────────────────────────────── */
     .hero {
-      min-height: 720px;
+      min-height: 500px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       padding-top: 80px;
+      background: var(--pink);
     }
 
     .hero-text {
@@ -116,7 +118,7 @@
 
     .hero-desc {
       font-size: 17px;
-      font-weight: 300;
+      font-weight: 400;
       color: #5A4A40;
       max-width: 440px;
       margin-bottom: 32px;
@@ -164,6 +166,8 @@
     }
 
     .hero-image img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -188,7 +192,7 @@
       align-items: center;
       gap: 12px;
       font-size: 13px;
-      font-weight: 300;
+      font-weight: 400;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       white-space: nowrap;
@@ -278,7 +282,7 @@
 
     .about-intro {
       font-size: 17px;
-      font-weight: 300;
+      font-weight: 400;
       color: #5A4A40;
       line-height: 1.85;
       margin-bottom: 20px;
@@ -301,7 +305,7 @@
 
     .about-col p {
       font-size: 14px;
-      font-weight: 300;
+      font-weight: 400;
       color: #6A5A50;
       line-height: 1.75;
     }
@@ -315,7 +319,7 @@
     /* ── GALLERY ─────────────────────────────────── */
     .gallery-section {
       padding: 40px 48px 60px;
-      background: var(--beige);
+      background: var(--pink);
     }
 
     .gallery-header {
@@ -565,7 +569,7 @@
       display: flex;
       gap: 20px;
       font-size: 15px;
-      font-weight: 300;
+      font-weight: 400;
       line-height: 1.5;
     }
 
@@ -618,7 +622,7 @@
       align-items: center;
       justify-content: space-between;
       font-size: 13px;
-      font-weight: 300;
+      font-weight: 400;
     }
 
     footer img {
@@ -723,7 +727,7 @@
   <!-- NAV -->
   <nav>
     <a href="#" class="nav-logo">
-      <img src="logo_crop.jpg" alt="Mlynček logo" />
+      <img src="profilovka2-01_crop.png" alt="Mlynček logo" />
     </a>
     <ul class="nav-links">
       <li><a href="#o-nas">O nás</a></li>
