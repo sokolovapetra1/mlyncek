@@ -55,7 +55,7 @@
     }
 
     .nav-logo img {
-      height: 56px;
+      height: 73px;
       width: auto;
     }
 
@@ -82,7 +82,7 @@
       min-height: 500px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      padding-top: 80px;
+      padding-top: 97px;
       background: var(--pink);
     }
 
@@ -318,7 +318,7 @@
 
     /* ── GALLERY ─────────────────────────────────── */
     .gallery-section {
-      padding: 40px 48px 60px;
+      padding: 16px 180px 16px;
       background: var(--beige);
     }
 
@@ -349,16 +349,16 @@
     .gallery-track {
       display: flex;
       gap: 12px;
-      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .gallery-item {
-      flex: 0 0 calc(25% - 9px);
-      aspect-ratio: 3/4;
+      flex: 0 0 calc(50% - 6px);
+      aspect-ratio: 1/1;
       overflow: hidden;
       cursor: pointer;
       position: relative;
-      box-shadow: 0 6px 24px rgba(0,0,0,0.22);
+      box-shadow: none;
     }
 
     .gallery-item::after {
@@ -693,7 +693,7 @@
     @media (max-width: 768px) {
       /* NAV */
       nav { padding: 12px 20px; flex-wrap: wrap; }
-      .nav-logo img { height: 48px; }
+      .nav-logo img { height: 62px; }
       .nav-hamburger { display: flex; }
       .nav-links {
         display: none;
@@ -707,7 +707,7 @@
       .nav-links li:last-child a { border-bottom: none; }
 
       /* HERO */
-      .hero { grid-template-columns: 1fr; min-height: unset; height: auto; padding-top: 72px; }
+      .hero { grid-template-columns: 1fr; min-height: unset; height: auto; padding-top: 86px; }
       .hero-text { padding: 40px 24px 32px; }
       .hero-title { font-size: 38px; }
       .hero-desc { font-size: 15px; }
@@ -825,20 +825,20 @@
           <div class="gallery-item" onclick="openLightbox('img1.jpg')">
             <img src="img1.jpg" alt="Tort s malinami" />
           </div>
-          <div class="gallery-item" onclick="openLightbox('img2.jpg')">
-            <img src="img2.jpg" alt="Jesenný čokoládový tort" />
-          </div>
           <div class="gallery-item" onclick="openLightbox('img5.jpg')">
             <img src="img5.jpg" alt="Matcha latte s malinami" />
+          </div>
+          <div class="gallery-item" onclick="openLightbox('img2.jpg')">
+            <img src="img2.jpg" alt="Jesenný čokoládový tort" />
           </div>
           <div class="gallery-item" onclick="openLightbox('img3.jpg')">
             <img src="img3.jpg" alt="Dog friendly kaviareň" />
           </div>
-          <div class="gallery-item" onclick="openLightbox('img6.jpg')">
-            <img src="img6.jpg" alt="Brunch menu" />
-          </div>
           <div class="gallery-item" onclick="openLightbox('img4.jpg')">
             <img src="img4.jpg" alt="Latte art" />
+          </div>
+          <div class="gallery-item" onclick="openLightbox('img6.jpg')">
+            <img src="img6.jpg" alt="Brunch menu" />
           </div>
           <div class="gallery-item" onclick="openLightbox('img.jpg')">
             <img src="img.jpg" alt="Exteriér kaviarne" />
@@ -970,7 +970,7 @@
       ></iframe>
     </div>
     <div class="info-content">
-      <h2 class="info-title">Nájdete nás</h2>
+      <h2 class="info-title">Zastavte sa u nás</h2>
       <ul class="info-list">
         <li>
           <strong>Adresa</strong>
@@ -1040,7 +1040,7 @@
       const track = document.getElementById('galleryTrack');
       const items = track.querySelectorAll('.gallery-item');
       const total = items.length;
-      const visible = 4;
+      const visible = 2;
       const max = total - visible;
 
       galleryIndex += dir;
@@ -1052,7 +1052,7 @@
     }
 
     function startGalleryAuto() {
-      galleryTimer = setInterval(() => slideGallery(1), 2000);
+      galleryTimer = setInterval(() => slideGallery(1), 3000);
     }
 
     function resetGalleryAuto() {
