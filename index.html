@@ -4,1104 +4,1016 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mlynček — Výberová káva v Moldave</title>
+  <meta name="description" content="Prvá a jediná kaviareň s výberovou kávou v Moldave nad Bodvou. Výberová káva, domáce zákusky, limonády a brunch." />
+  <link rel="icon" type="image/png" href="assets/mark-dark.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Changa:wght@300;400;700&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Changa:wght@200;300;400&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { overflow-x: hidden; }
 
     :root {
-      --beige:      #F2E8DC;
-      --beige-dark: #E8D9C8;
-      --pink:       #ffffff;
-      --blue:       #A1C1DD;
-      --blue-dark:  #89A4BC;
-      --red:        #C5362C;
-      --dark:       #141914;
-      --white:      #ffffff;
+      --ink:    #141914;
+      --paper:  #F6F4EF;
+      --white:  #FFFFFF;
+      --mint:   #1DFFC4;
+      --pink:   #CDA598;
+      --blue:   #A1C1DD;
+      --muted:  #5C625C;
+      --line:   rgba(20, 25, 20, 0.12);
+      --radius: 28px;
+      --pad:    clamp(20px, 5vw, 72px);
+      --h2:     clamp(36px, 4.2vw, 60px);
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
     body {
       font-family: 'Open Sans', sans-serif;
-      background-color: #ffffff;
-      color: var(--dark);
+      background: var(--paper);
+      color: var(--ink);
       font-size: 16px;
       line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+
+    .h-display {
+      font-family: 'Changa', sans-serif;
+      font-weight: 200;
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .eyebrow img { width: 14px; height: auto; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 26px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-mint { background: var(--mint); color: var(--ink); }
+    .btn-mint:hover { background: var(--ink); color: var(--mint); }
+    .btn-ghost { border: 1px solid var(--ink); color: var(--ink); }
+    .btn-ghost:hover { background: var(--ink); color: var(--white); }
+    .btn .arrow { transition: transform 0.25s ease; }
+    .btn:hover .arrow { transform: translateX(4px); }
+
     /* ── NAV ─────────────────────────────────────── */
-    nav {
+    .nav-wrap {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 16px; left: 0; right: 0;
       z-index: 100;
+      padding: 0 var(--pad);
+      pointer-events: none;
+    }
+
+    nav {
+      pointer-events: auto;
+      max-width: 1280px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 48px;
-      background: #ffffff;
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--beige-dark);
+      gap: 24px;
+      padding: 10px 10px 10px 24px;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(16px) saturate(1.4);
+      -webkit-backdrop-filter: blur(16px) saturate(1.4);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 999px;
+      box-shadow: 0 8px 32px rgba(20, 25, 20, 0.06);
     }
 
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--dark);
-    }
-
-    .nav-logo img {
-      height: 73px;
-      width: auto;
-    }
+    .nav-logo img { height: 22px; width: auto; }
 
     .nav-links {
       display: flex;
-      gap: 36px;
+      align-items: center;
+      gap: 6px;
       list-style: none;
     }
 
     .nav-links a {
+      display: block;
+      padding: 10px 18px;
+      border-radius: 999px;
       text-decoration: none;
-      color: var(--dark);
       font-size: 14px;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: color 0.2s;
+      transition: background 0.2s;
     }
+    .nav-links a:hover { background: rgba(20, 25, 20, 0.06); }
+    .nav-links .btn { padding: 10px 20px; }
+    .nav-links .btn:hover { background: var(--ink); }
 
-    .nav-links a:hover { color: var(--blue); }
+    .nav-toggle {
+      display: none;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: none;
+      background: var(--ink);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 18px; height: 1.5px;
+      background: var(--white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(3.25px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { transform: translateY(-3.25px) rotate(-45deg); }
 
     /* ── HERO ────────────────────────────────────── */
     .hero {
-      min-height: 500px;
+      min-height: 100svh;
+      padding: 130px var(--pad) 56px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      padding-top: 97px;
-      background: var(--pink);
-    }
-
-    .hero-text {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 40px 64px 40px 80px;
-    }
-
-    .hero-label {
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 20px;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: clamp(32px, 5vw, 80px);
+      align-items: center;
+      max-width: 1440px;
+      margin: 0 auto;
     }
 
     .hero-title {
-      font-family: 'Changa', sans-serif;
-      font-size: clamp(42px, 4.8vw, 72px);
-      font-weight: 700;
-      line-height: 1.1;
-      color: var(--dark);
-      margin-bottom: 24px;
+      font-size: clamp(44px, 4.6vw, 72px);
+      line-height: 1.02;
+      margin: 24px 0 28px;
     }
 
-    .hero-title em {
-      font-style: italic;
-      color: var(--blue);
+    .hero-title .hl {
+      position: relative;
+      display: inline-block;
+      font-weight: 400;
+      z-index: 0;
     }
+    .hero-title .hl::after {
+      content: '';
+      position: absolute;
+      left: -0.08em; right: -0.08em;
+      bottom: 0.08em;
+      height: 0.36em;
+      background: var(--mint);
+      z-index: -1;
+      transform-origin: left;
+      animation: swipe 0.9s 0.5s cubic-bezier(0.65, 0, 0.35, 1) both;
+    }
+    @keyframes swipe { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
     .hero-desc {
-      font-size: 17px;
-      font-weight: 400;
-      color: #5A4A40;
-      max-width: 440px;
-      margin-bottom: 32px;
-      line-height: 1.75;
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 460px;
+      margin-bottom: 36px;
     }
 
-    .btn-group {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-    }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
 
-    .btn-primary {
-      display: inline-block;
-      background: var(--blue);
-      color: var(--dark);
-      text-decoration: none;
-      padding: 14px 32px;
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      transition: background 0.2s;
-    }
-
-    .btn-primary:hover { background: var(--blue-dark); }
-
-    .btn-secondary {
-      display: inline-block;
-      color: var(--dark);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 400;
-      letter-spacing: 0.04em;
-      border-bottom: 1px solid var(--dark);
-      padding-bottom: 2px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-
-    .btn-secondary:hover { color: var(--red); border-color: var(--red); }
-
-    .hero-image {
+    .hero-visual {
       position: relative;
-      overflow: hidden;
-    }
-
-    .hero-image img {
-      position: absolute;
-      inset: 0;
+      aspect-ratio: 1 / 1;
+      justify-self: end;
       width: 100%;
-      height: 100%;
+      max-width: 520px;
+    }
+
+    .hero-visual .photo {
+      width: 100%; height: 100%;
       object-fit: cover;
-      object-position: center center;
-      display: block;
+      border-radius: var(--radius);
     }
 
-    /* ── STRIP ───────────────────────────────────── */
-    .strip {
-      background: var(--blue);
-      color: var(--dark);
-      padding: 20px 48px;
+    .hero-tag {
+      position: absolute;
+      top: 24px; right: 24px;
+      background: var(--white);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 48px;
-      overflow: hidden;
+      gap: 8px;
+    }
+    .hero-tag .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #2bb673;
+      box-shadow: 0 0 0 0 rgba(43, 182, 115, 0.5);
+      animation: pulse 2s infinite;
+    }
+    .hero-tag.closed .dot { background: var(--pink); animation: none; }
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(43, 182, 115, 0.5); }
+      70%  { box-shadow: 0 0 0 8px rgba(43, 182, 115, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(43, 182, 115, 0); }
     }
 
-    .strip-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .strip-dot {
-      width: 5px;
-      height: 5px;
-      background: var(--dark);
+    .badge {
+      position: absolute;
+      left: -56px; bottom: 48px;
+      width: 148px; height: 148px;
       border-radius: 50%;
-      flex-shrink: 0;
+      background: var(--mint);
+      display: grid;
+      place-items: center;
     }
+    .badge svg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      animation: spin 22s linear infinite;
+    }
+    .badge text {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      fill: var(--ink);
+    }
+    .badge img { width: 44px; height: auto; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── MARQUEE ─────────────────────────────────── */
+    .marquee {
+      background: var(--ink);
+      color: var(--white);
+      overflow: hidden;
+      padding: 22px 0;
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 30s linear infinite;
+    }
+    .marquee-group {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      padding-right: 40px;
+    }
+    .marquee-item {
+      font-family: 'Changa', sans-serif;
+      font-weight: 300;
+      font-size: clamp(22px, 2.6vw, 34px);
+      white-space: nowrap;
+      letter-spacing: 0.01em;
+    }
+    .marquee-group img { width: 22px; height: auto; }
+    .marquee-group img.mint { filter: none; }
+    @keyframes marquee { to { transform: translateX(-50%); } }
 
     /* ── ABOUT ───────────────────────────────────── */
     .about {
-      background: var(--white);
-      padding: 100px 80px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .about-left {}
-
-    .about-label {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--dark);
-      margin-bottom: 16px;
-    }
-
-    .about-heading {
-      font-family: 'Changa', sans-serif;
-      font-size: clamp(32px, 3.2vw, 50px);
-      font-weight: 600;
-      line-height: 1.15;
-      color: var(--dark);
-      margin-bottom: 48px;
-    }
-
-    .about-illustration {
-      display: flex;
-      justify-content: flex-start;
-    }
-
-    .about-illustration svg {
-      width: 180px;
-      height: auto;
-      opacity: 0.85;
-    }
-
-    .section-label {
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 20px;
-    }
-
-    .section-title {
-      font-family: 'Changa', sans-serif;
-      font-size: clamp(36px, 3.5vw, 52px);
-      font-weight: 300;
-      line-height: 1.15;
-      margin-bottom: 28px;
-    }
-
-    .section-title em {
-      font-style: italic;
-      color: var(--blue);
-    }
-
-    .about-right {
-      max-width: 720px;
-      text-align: center;
-    }
-
-    .about-heading-main {
-      font-family: 'Changa', sans-serif;
-      font-size: clamp(24px, 2.4vw, 36px);
-      font-weight: 700;
-      color: var(--dark);
-      line-height: 1.1;
-      margin-bottom: 28px;
-      white-space: nowrap;
-    }
-
-    .about-intro {
-      font-size: 17px;
-      font-weight: 400;
-      color: #5A4A40;
-      line-height: 1.85;
-      margin-bottom: 20px;
-    }
-
-    .about-cols {
+      padding: clamp(80px, 12vw, 160px) var(--pad);
+      max-width: 1280px;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      margin-bottom: 40px;
+      gap: clamp(32px, 6vw, 96px);
+      align-items: start;
     }
 
-    .about-col h4 {
-      font-family: 'Changa', sans-serif;
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: var(--dark);
+    .about-title {
+      font-size: var(--h2);
+      margin-top: 20px;
+    }
+    .about-title strong { font-weight: 400; }
+
+    .about-body p {
+      font-size: 17px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .about-body p:first-child {
+      font-size: 21px;
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.55;
     }
 
-    .about-col p {
-      font-size: 14px;
-      font-weight: 400;
-      color: #6A5A50;
-      line-height: 1.75;
-    }
-
-    .about-btns {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-    }
 
     /* ── GALLERY ─────────────────────────────────── */
-    .gallery-section {
-      padding: 16px 180px 16px;
-      background: var(--beige);
-    }
+    .gallery { padding-bottom: clamp(80px, 10vw, 140px); }
 
-    .gallery-header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .gallery-title {
-      font-family: 'Changa', sans-serif;
-      font-size: clamp(40px, 4vw, 58px);
-      font-weight: 300;
-      line-height: 1.15;
-    }
-
-    .gallery-title em { font-style: italic; color: var(--blue); }
-
-    .gallery-carousel {
-      position: relative;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .gallery-track-wrapper {
-      overflow: hidden;
-    }
-
-    .gallery-track {
+    .gallery-head {
+      max-width: 1280px;
+      margin: 0 auto 32px;
+      padding: 0 var(--pad);
       display: flex;
-      gap: 12px;
-      transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
     }
+    .gallery-title { font-size: var(--h2); margin-top: 16px; }
 
-    .gallery-item {
-      flex: 0 0 calc(50% - 6px);
-      aspect-ratio: 1/1;
-      overflow: hidden;
-      cursor: pointer;
-      position: relative;
-      box-shadow: none;
-    }
-
-    .gallery-item::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(123, 191, 207, 0);
-      transition: background 0.3s;
-    }
-
-    .gallery-item:hover::after {
-      background: rgba(123, 191, 207, 0.2);
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-
-    .gallery-item:hover img { transform: scale(1.04); }
-
-    .gallery-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: var(--white);
-      border: none;
-      width: 48px;
-      height: 48px;
+    .gallery-nav { display: flex; gap: 8px; }
+    .round-btn {
+      width: 52px; height: 52px;
       border-radius: 50%;
-      font-size: 20px;
+      border: 1px solid var(--ink);
+      background: transparent;
       cursor: pointer;
-      z-index: 10;
+      font-size: 20px;
+      color: var(--ink);
+      transition: background 0.2s, color 0.2s;
+    }
+    .round-btn:hover { background: var(--ink); color: var(--mint); }
+
+    .rail {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
-      transition: background 0.2s, transform 0.2s;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding: 0 var(--pad);
+      padding: 0 var(--pad);
+      scrollbar-width: none;
     }
+    .rail::-webkit-scrollbar { display: none; }
 
-    .gallery-btn:hover {
-      background: var(--blue);
-      transform: translateY(-50%) scale(1.05);
+    .rail-item {
+      flex: 0 0 clamp(240px, 26vw, 360px);
+      aspect-ratio: 4 / 5;
+      border-radius: 22px;
+      overflow: hidden;
+      scroll-snap-align: start;
+      cursor: zoom-in;
+      border: none;
+      padding: 0;
+      background: var(--line);
     }
+    .rail-item:nth-child(even) { margin-top: 40px; }
+    .rail-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    .rail-item:hover img { transform: scale(1.05); }
 
-    .gallery-btn-prev { left: -24px; }
-    .gallery-btn-next { right: -24px; }
-
-    /* ── MENU ACCORDION ─────────────────────────── */
-    .menu-section {
+    /* ── MENU ────────────────────────────────────── */
+    .menu {
       background: var(--white);
-      padding: 48px 80px 100px;
+      border-radius: 40px 40px 0 0;
+      padding: clamp(72px, 10vw, 130px) var(--pad);
     }
+    .menu-inner { max-width: 1080px; margin: 0 auto; }
 
-    .menu-header {
-      text-align: center;
+    .menu-head { margin-bottom: 40px; }
+    .menu-title { font-size: var(--h2); margin-top: 16px; }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
       margin-bottom: 32px;
     }
-
-    .menu-header h2 {
-      font-family: 'Changa', sans-serif;
-      font-size: clamp(40px, 5vw, 64px);
-      font-weight: 700;
-      color: var(--dark);
-      letter-spacing: -0.01em;
-    }
-
-    .menu-list {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .menu-category {
-      border-top: 1px solid var(--beige-dark);
-    }
-
-    .menu-category:last-child {
-      border-bottom: 1px solid var(--beige-dark);
-    }
-
-    .menu-trigger {
-      width: 100%;
-      background: none;
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 22px 0;
+    .tab {
+      border: 1px solid var(--line);
+      background: transparent;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--ink);
       cursor: pointer;
-      text-align: left;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .tab:hover { border-color: var(--ink); }
+    .tab[aria-selected="true"] {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--white);
     }
 
-    .menu-trigger h3 {
-      font-family: 'Changa', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--dark);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .menu-trigger:hover h3 { color: var(--blue); }
-
-    .menu-arrow {
-      color: var(--dark);
-      font-size: 20px;
-      transition: transform 0.3s ease;
-      flex-shrink: 0;
-      margin-left: 24px;
-    }
-
-    .menu-category.open .menu-arrow {
-      transform: rotate(180deg);
-    }
-
-    .menu-category.open .menu-trigger h3 {
-      color: var(--blue);
-    }
-
-    .menu-body {
-      display: none;
-      padding-bottom: 24px;
-    }
-
-    .menu-category.open .menu-body {
-      display: block;
-    }
+    .panel { display: none; }
+    .panel.active { display: block; animation: fadeUp 0.45s ease both; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
     .menu-items {
-      display: flex;
-      flex-direction: column;
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 64px;
     }
-
     .menu-item {
       display: flex;
-      justify-content: space-between;
       align-items: baseline;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--beige-dark);
-      gap: 16px;
+      gap: 12px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
     }
-
-    .menu-item:last-child { border-bottom: none; }
-
-    .menu-item-name {
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--dark);
+    .menu-item .name {
+      font-family: 'Changa', sans-serif;
+      font-size: 20px;
+      font-weight: 300;
     }
-
-    .menu-item-price {
-      font-size: 14px;
+    .menu-item .leader {
+      flex: 1;
+      border-bottom: 1px dotted rgba(20, 25, 20, 0.3);
+      transform: translateY(-5px);
+    }
+    .menu-item .price {
+      font-size: 15px;
       font-weight: 500;
-      color: var(--dark);
       white-space: nowrap;
-      flex-shrink: 0;
     }
+    .menu-item.solo { grid-column: 1 / -1; }
 
-    /* ── INFO ────────────────────────────────────── */
-    .info {
-      background: var(--blue);
-      color: var(--dark);
+    /* ── CAKES ───────────────────────────────────── */
+    .cakes {
+      background: var(--white);
+      padding: 0 var(--pad) clamp(72px, 10vw, 130px);
+    }
+    .cakes-card {
+      max-width: 1280px;
+      margin: 0 auto;
+      background: var(--pink);
+      border-radius: var(--radius);
+      overflow: hidden;
       display: grid;
       grid-template-columns: 1fr 1fr;
     }
-
-    .info-map {
-      min-height: 400px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .info-map iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
-      filter: grayscale(30%) contrast(1.05);
-    }
-
-    .info-content {
-      padding: 80px;
+    .cakes-text {
+      padding: clamp(36px, 5vw, 72px);
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: flex-start;
     }
-
-    .info-content .section-label { color: var(--red); }
-
-    .info-title {
-      font-family: 'Changa', sans-serif;
-      font-size: 44px;
-      font-weight: 300;
-      margin-bottom: 40px;
-      line-height: 1.15;
-    }
-
-    .info-list {
+    .cakes-title { font-size: var(--h2); margin: 20px 0 20px; }
+    .cakes-title strong { font-weight: 400; }
+    .cakes-text p { font-size: 17px; max-width: 440px; margin-bottom: 32px; }
+    .cakes-steps {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 10px;
+      margin-bottom: 36px;
     }
-
-    .info-list li {
-      display: flex;
-      gap: 20px;
-      font-size: 15px;
-      font-weight: 400;
-      line-height: 1.5;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 16px;
-      margin-top: 36px;
-    }
-
-    .social-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
-      border: 1.5px solid var(--dark);
+    .cakes-steps li { display: flex; align-items: center; gap: 14px; font-size: 15px; }
+    .cakes-steps span {
+      width: 30px; height: 30px;
       border-radius: 50%;
-      color: var(--dark);
-      text-decoration: none;
-      transition: background 0.2s, color 0.2s;
+      background: var(--ink);
+      color: var(--mint);
+      display: grid;
+      place-items: center;
+      font-family: 'Changa', sans-serif;
+      font-size: 14px;
+      flex-shrink: 0;
     }
+    .cakes-photo { min-height: 420px; }
+    .cakes-photo img { width: 100%; height: 100%; object-fit: cover; }
 
-    .social-link:hover {
-      background: var(--dark);
-      color: var(--blue);
+    /* ── CONTACT ─────────────────────────────────── */
+    .contact {
+      background: var(--ink);
+      color: var(--white);
+      padding: clamp(56px, 7vw, 96px) var(--pad) 32px;
+      position: relative;
+      overflow: hidden;
     }
-
-    .social-link svg {
-      width: 18px;
-      height: 18px;
-      fill: currentColor;
+    .contact-bg-mark {
+      position: absolute;
+      right: -120px; top: -120px;
+      width: 520px;
+      opacity: 0.05;
+      animation: spin 80s linear infinite;
+      pointer-events: none;
     }
+    .contact-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 6vw, 96px);
+      position: relative;
+    }
+    .contact .eyebrow { color: var(--mint); }
+    .contact-title { font-size: var(--h2); margin: 16px 0 32px; }
+    .contact-title strong { font-weight: 400; color: var(--mint); }
 
-    .info-list strong {
-      font-weight: 500;
-      min-width: 100px;
-      color: var(--dark);
-      font-size: 12px;
-      letter-spacing: 0.1em;
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px 24px;
+      margin-bottom: 28px;
+    }
+    .info-block .label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      padding-top: 2px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 8px;
     }
+    .info-block .value {
+      font-family: 'Changa', sans-serif;
+      font-size: 22px;
+      font-weight: 300;
+      line-height: 1.35;
+    }
+    .info-block a { text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
+    .info-block a:hover { color: var(--mint); border-color: var(--mint); }
 
-    /* ── FOOTER ──────────────────────────────────── */
-    footer {
-      background: var(--white);
-      color: rgba(42,32,26,0.5);
-      padding: 40px 80px;
-      display: flex;
+    .socials { display: flex; gap: 10px; flex-wrap: wrap; }
+    .social {
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      font-size: 13px;
-      font-weight: 400;
+      gap: 10px;
+      padding: 12px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      text-decoration: none;
+      font-size: 14px;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .social svg { width: 16px; height: 16px; fill: currentColor; }
+    .social:hover { background: var(--mint); color: var(--ink); border-color: var(--mint); }
+
+    .map {
+      border-radius: var(--radius);
+      overflow: hidden;
+      min-height: 340px;
+      background: #222;
+    }
+    .map iframe {
+      width: 100%; height: 100%;
+      min-height: 340px;
+      border: none;
+      display: block;
+      filter: grayscale(1) contrast(1.05);
     }
 
-    footer img {
-      height: 32px;
+    .footer {
+      max-width: 1280px;
+      margin: clamp(48px, 6vw, 72px) auto 0;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      flex-wrap: wrap;
+      position: relative;
     }
+    .footer-logo { width: min(300px, 60vw); height: auto; }
+    .footer small { font-size: 13px; color: rgba(255, 255, 255, 0.5); }
 
     /* ── LIGHTBOX ────────────────────────────────── */
     .lightbox {
-      display: none;
       position: fixed;
       inset: 0;
-      background: rgba(26, 16, 10, 0.92);
       z-index: 999;
+      background: rgba(20, 25, 20, 0.94);
+      display: none;
       align-items: center;
       justify-content: center;
+      padding: 24px;
     }
-
-    .lightbox.open { display: flex; }
-
-    .lightbox img {
-      max-width: 90vw;
-      max-height: 90vh;
-      object-fit: contain;
-      display: block;
-    }
-
+    .lightbox.open { display: flex; animation: fadeUp 0.3s ease both; }
+    .lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 20px; object-fit: contain; }
     .lightbox-close {
       position: absolute;
-      top: 24px;
-      right: 32px;
-      background: none;
+      top: 20px; right: 20px;
+      width: 48px; height: 48px;
+      border-radius: 50%;
       border: none;
-      color: white;
-      font-size: 32px;
+      background: var(--mint);
+      color: var(--ink);
+      font-size: 18px;
       cursor: pointer;
-      opacity: 0.7;
-      transition: opacity 0.2s;
     }
 
-    .lightbox-close:hover { opacity: 1; }
+    /* ── REVEAL ──────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); }
+    .reveal.in { opacity: 1; transform: none; }
 
-    /* ── HAMBURGER ───────────────────────────────── */
-    .nav-hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+      html { scroll-behavior: auto; }
     }
-
-    .nav-hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--dark);
-      transition: transform 0.3s, opacity 0.3s;
-    }
-
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     /* ── RESPONSIVE ──────────────────────────────── */
-    @media (max-width: 768px) {
-      /* NAV */
-      nav { padding: 12px 20px; flex-wrap: wrap; }
-      .nav-logo img { height: 62px; }
-      .nav-hamburger { display: flex; }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 112px; }
+      .hero-visual { justify-self: stretch; max-height: none; }
+      .badge { left: auto; right: 16px; bottom: -40px; width: 120px; height: 120px; }
+      .badge img { width: 36px; }
+      .about, .contact-inner { grid-template-columns: 1fr; }
+      .menu-items { grid-template-columns: 1fr; }
+      .map, .map iframe { min-height: 320px; }
+      .cakes-card { grid-template-columns: 1fr; }
+      .cakes-photo { min-height: 0; aspect-ratio: 4 / 3; order: -1; }
+    }
+
+    @media (max-width: 720px) {
+      .nav-toggle { display: inline-flex; }
+      nav { flex-wrap: wrap; border-radius: 28px; padding: 8px 8px 8px 20px; }
       .nav-links {
         display: none;
         width: 100%;
         flex-direction: column;
-        gap: 0;
-        padding: 8px 0 16px;
+        align-items: stretch;
+        padding: 8px 4px 8px 0;
       }
       .nav-links.open { display: flex; }
-      .nav-links a { font-size: 14px; padding: 12px 0; border-bottom: 1px solid var(--beige-dark); }
-      .nav-links li:last-child a { border-bottom: none; }
-
-      /* HERO */
-      .hero { grid-template-columns: 1fr; min-height: unset; height: auto; padding-top: 86px; }
-      .hero-text { padding: 40px 24px 32px; }
-      .hero-title { font-size: 38px; }
-      .hero-desc { font-size: 15px; }
-      .hero-image { height: 100vw; }
-
-      /* STRIP */
-      .strip { padding: 16px 20px; gap: 20px; flex-wrap: wrap; justify-content: center; }
-      .strip-item { font-size: 11px; }
-
-      /* ABOUT */
-      .about { padding: 56px 24px; }
-      .about-right { text-align: center; }
-      .about-heading-main { font-size: 24px; white-space: normal; }
-      .about-intro { font-size: 15px; }
-
-      /* GALLERY */
-      .gallery-section { padding: 32px 0 40px; }
-      .gallery-item { flex: 0 0 calc(50% - 6px); }
-      .gallery-btn {
-        background: none;
-        border: none;
-        box-shadow: none;
-        color: rgba(255,255,255,0.85);
-        text-shadow: 0 1px 4px rgba(0,0,0,0.4);
-        font-size: 36px;
-        width: 36px;
-        height: 36px;
-      }
-      .gallery-btn-prev { left: 6px; }
-      .gallery-btn-next { right: 6px; }
-      .gallery-btn:hover { background: none; transform: translateY(-50%); }
-
-      /* MENU */
-      .menu-section { padding: 40px 24px 60px; }
-      .menu-header h2 { font-size: 36px; }
-      .menu-trigger h3 { font-size: 14px; }
-
-      /* INFO */
-      .info { grid-template-columns: 1fr; }
-      .info-map { min-height: 240px; }
-      .info-content { padding: 40px 24px; }
-      .info-title { font-size: 32px; }
-
-      /* FOOTER */
-      footer { text-align: center; padding: 28px 20px; font-size: 12px; }
+      .nav-links a { padding: 14px 12px; font-size: 16px; }
+      .nav-links .btn { justify-content: center; margin-top: 6px; }
+      .hero-title { font-size: 46px; }
+      .hero-desc { font-size: 16px; }
+      .gallery-nav { display: none; }
+      .rail-item { flex-basis: 72vw; }
+      .rail-item:nth-child(even) { margin-top: 24px; }
+      .menu { border-radius: 28px 28px 0 0; }
+      .info-grid { grid-template-columns: 1fr; gap: 24px; }
     }
   </style>
 </head>
 <body>
 
   <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-logo">
-      <img src="profilovka2-01_crop.png" alt="Mlynček logo" />
-    </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#o-nas" onclick="closeNav()">O nás</a></li>
-      <li><a href="#ponuka" onclick="closeNav()">Ponuka</a></li>
-      <li><a href="#kontakt" onclick="closeNav()">Kontakt</a></li>
-    </ul>
-    <button class="nav-hamburger" id="navHamburger" onclick="toggleNav()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
+  <div class="nav-wrap">
+    <nav aria-label="Hlavná navigácia">
+      <a href="#" class="nav-logo" aria-label="Mlynček — domov">
+        <img src="assets/logo-dark.png" alt="Mlynček" />
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Otvoriť menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#o-nas">O nás</a></li>
+        <li><a href="#ponuka">Ponuka</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="#torty" class="btn btn-mint">Torty na objednávku</a></li>
+      </ul>
+    </nav>
+  </div>
 
   <!-- HERO -->
-  <section class="hero">
+  <header class="hero">
     <div class="hero-text">
-      <h1 class="hero-title">
-        Prvá a jediná kaviareň<br/>s výberovou kávou<br/><em>v Moldave</em>
+      <span class="eyebrow"><img src="assets/mark-dark.png" alt="" />Specialty coffee · Moldava nad Bodvou</span>
+      <h1 class="hero-title h-display">
+        Prvá a jediná kaviareň s výberovou kávou <span class="hl">v&nbsp;Moldave</span>
       </h1>
       <p class="hero-desc">
         Miesto, kde sa zastavíte s chuťou. Čerstvo pražená výberová káva,
         domáce zákusky a priateľská atmosféra čakajú práve na vás.
       </p>
-      <div class="btn-group">
-        <a href="#kontakt" class="btn-secondary">Kde nás nájdete</a>
+      <div class="hero-cta">
+        <a href="#kontakt" class="btn btn-mint">Kde nás nájdete <span class="arrow">→</span></a>
+        <a href="#ponuka" class="btn btn-ghost">Pozrieť menu</a>
       </div>
     </div>
-    <div class="hero-image">
-      <img src="img4_crop.jpg" alt="Mlynček kaviareň interiér" />
-    </div>
-  </section>
 
-  <!-- STRIP -->
-  <div class="strip">
-    <div class="strip-item"><span class="strip-dot"></span>Specialty coffee</div>
-    <div class="strip-item"><span class="strip-dot"></span>Domáce zákusky</div>
-    <div class="strip-item"><span class="strip-dot"></span>Brunch menu</div>
-    <div class="strip-item"><span class="strip-dot"></span>Dog friendly</div>
+    <div class="hero-visual">
+      <img class="photo" src="img4_crop.jpg" alt="Cappuccino s latte art na drevenom podnose" />
+      <div class="hero-tag" id="openTag" hidden><span class="dot"></span><span id="openText"></span></div>
+      <div class="badge" aria-hidden="true">
+        <svg viewBox="0 0 148 148">
+          <defs><path id="circle" d="M74,74 m-56,0 a56,56 0 1,1 112,0 a56,56 0 1,1 -112,0" /></defs>
+          <text><textPath href="#circle">Výberová káva · Domáce zákusky · Brunch ·</textPath></text>
+        </svg>
+        <img src="assets/mark-dark.png" alt="" />
+      </div>
+    </div>
+  </header>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-label="Specialty coffee, Domáce zákusky, Brunch menu, Dog friendly">
+    <div class="marquee-track" aria-hidden="true">
+      <div class="marquee-group">
+        <span class="marquee-item">Specialty coffee</span><img src="assets/mark-light.png" alt="" />
+        <span class="marquee-item">Domáce zákusky</span><img src="assets/mark-light.png" alt="" />
+        <span class="marquee-item">Brunch menu</span><img src="assets/mark-light.png" alt="" />
+        <span class="marquee-item">Dog friendly</span><img src="assets/mark-light.png" alt="" />
+        <span class="marquee-item">Specialty coffee</span><img src="assets/mark-light.png" alt="" />
+        <span class="marquee-item">Domáce zákusky</span><img src="assets/mark-light.png" alt="" />
+        <span class="marquee-item">Brunch menu</span><img src="assets/mark-light.png" alt="" />
+        <span class="marquee-item">Dog friendly</span><img src="assets/mark-light.png" alt="" />
+      </div>
+      <div class="marquee-group">
+        <span class="marquee-item">Specialty coffee</span><img src="assets/mark-light.png" alt="" />
+        <span class="marquee-item">Domáce zákusky</span><img src="assets/mark-light.png" alt="" />
+        <span class="marquee-item">Brunch menu</span><img src="assets/mark-light.png" alt="" />
+        <span class="marquee-item">Dog friendly</span><img src="assets/mark-light.png" alt="" />
+        <span class="marquee-item">Specialty coffee</span><img src="assets/mark-light.png" alt="" />
+        <span class="marquee-item">Domáce zákusky</span><img src="assets/mark-light.png" alt="" />
+        <span class="marquee-item">Brunch menu</span><img src="assets/mark-light.png" alt="" />
+        <span class="marquee-item">Dog friendly</span><img src="assets/mark-light.png" alt="" />
+      </div>
+    </div>
   </div>
 
-  <!-- ABOUT -->
-  <section class="about" id="o-nas">
-    <div class="about-right">
-      <h2 class="about-heading-main">Príďte si vychutnať viac, než len kávu</h2>
-      <p class="about-intro">
-        V Mlynčeku pre vás už viac ako 2 roky pripravujeme výberovú kávu, domáce zákusky, limonády a brunch. Sme prvá kaviareň s výberovou kávou v Moldave nad Bodvou a vytvárame miesto, kde sa spája kvalitná káva, príjemné prostredie a pohodová atmosféra.
-      </p>
-      <p class="about-intro">
-        Záleží nám na detailoch, kvalitných surovinách a na tom, aby ste sa u nás cítili dobre — či už prídete na rannú kávu, stretnutie s priateľmi alebo chvíľu oddychu počas dňa.
-      </p>
-    </div>
-  </section>
+  <main>
+    <!-- ABOUT -->
+    <section class="about" id="o-nas">
+      <div class="reveal">
+        <span class="eyebrow"><img src="assets/mark-dark.png" alt="" />O nás</span>
+        <h2 class="about-title h-display">Príďte si vychutnať <strong>viac, než len kávu</strong></h2>
+      </div>
+      <div class="about-body reveal">
+        <p>
+          V Mlynčeku pre vás už viac ako 2 roky pripravujeme výberovú kávu, domáce zákusky, limonády a brunch. Sme prvá kaviareň s výberovou kávou v Moldave nad Bodvou a vytvárame miesto, kde sa spája kvalitná káva, príjemné prostredie a pohodová atmosféra.
+        </p>
+        <p>
+          Záleží nám na detailoch, kvalitných surovinách a na tom, aby ste sa u nás cítili dobre — či už prídete na rannú kávu, stretnutie s priateľmi alebo chvíľu oddychu počas dňa.
+        </p>
+      </div>
+    </section>
 
-  <!-- GALLERY -->
-  <section class="gallery-section" id="galeria">
-    <div class="gallery-carousel">
-      <button class="gallery-btn gallery-btn-prev" onclick="slideGallery(-1); resetGalleryAuto()">&#8249;</button>
-      <div class="gallery-track-wrapper">
-        <div class="gallery-track" id="galleryTrack">
-          <div class="gallery-item" onclick="openLightbox('img7.jpg')">
-            <img src="img7.jpg" alt="Latte art medveď" />
-          </div>
-          <div class="gallery-item" onclick="openLightbox('img1.jpg')">
-            <img src="img1.jpg" alt="Tort s malinami" />
-          </div>
-          <div class="gallery-item" onclick="openLightbox('img5.jpg')">
-            <img src="img5.jpg" alt="Matcha latte s malinami" />
-          </div>
-          <div class="gallery-item" onclick="openLightbox('img2.jpg')">
-            <img src="img2.jpg" alt="Jesenný čokoládový tort" />
-          </div>
-          <div class="gallery-item" onclick="openLightbox('img3.jpg')">
-            <img src="img3.jpg" alt="Dog friendly kaviareň" />
-          </div>
-          <div class="gallery-item" onclick="openLightbox('img4.jpg')">
-            <img src="img4.jpg" alt="Latte art" />
-          </div>
-          <div class="gallery-item" onclick="openLightbox('img6.jpg')">
-            <img src="img6.jpg" alt="Brunch menu" />
-          </div>
-          <div class="gallery-item" onclick="openLightbox('img.jpg')">
-            <img src="img.jpg" alt="Exteriér kaviarne" />
-          </div>
-          <div class="gallery-item" onclick="openLightbox('img8.jpg')">
-            <img src="img8.jpg" alt="Mlynček" />
-          </div>
-          <div class="gallery-item" onclick="openLightbox('img9.jpg')">
-            <img src="img9.jpg" alt="Mlynček" />
-          </div>
+    <!-- GALLERY -->
+    <section class="gallery" id="galeria" aria-label="Galéria">
+      <div class="gallery-head reveal">
+        <div>
+          <span class="eyebrow"><img src="assets/mark-dark.png" alt="" />Galéria</span>
+          <h2 class="gallery-title h-display">Chvíle z Mlynčeka</h2>
+        </div>
+        <div class="gallery-nav">
+          <button class="round-btn" data-dir="-1" aria-label="Predchádzajúce fotky">←</button>
+          <button class="round-btn" data-dir="1" aria-label="Ďalšie fotky">→</button>
         </div>
       </div>
-      <button class="gallery-btn gallery-btn-next" onclick="slideGallery(1); resetGalleryAuto()">&#8250;</button>
-    </div>
-  </section>
+      <div class="rail" id="rail">
+        <button class="rail-item" data-src="img7.jpg"><img src="img7.jpg" alt="Latte art medveď" loading="lazy" /></button>
+        <button class="rail-item" data-src="img1.jpg"><img src="img1.jpg" alt="Torta s malinami" loading="lazy" /></button>
+        <button class="rail-item" data-src="img5.jpg"><img src="img5.jpg" alt="Matcha latte s malinami" loading="lazy" /></button>
+        <button class="rail-item" data-src="img2.jpg"><img src="img2.jpg" alt="Jesenná čokoládová torta" loading="lazy" /></button>
+        <button class="rail-item" data-src="img3.jpg"><img src="img3.jpg" alt="Dog friendly kaviareň" loading="lazy" /></button>
+        <button class="rail-item" data-src="img4.jpg"><img src="img4.jpg" alt="Latte art" loading="lazy" /></button>
+        <button class="rail-item" data-src="img6.jpg"><img src="img6.jpg" alt="Brunch menu" loading="lazy" /></button>
+        <button class="rail-item" data-src="img.jpg"><img src="img.jpg" alt="Exteriér kaviarne" loading="lazy" /></button>
+        <button class="rail-item" data-src="img8.jpg"><img src="img8.jpg" alt="Mlynček" loading="lazy" /></button>
+        <button class="rail-item" data-src="img9.jpg"><img src="img9.jpg" alt="Mlynček" loading="lazy" /></button>
+      </div>
+    </section>
 
-  <!-- MENU -->
-  <section class="menu-section" id="ponuka">
-    <div class="menu-header">
-      <h2>MENU</h2>
-    </div>
-    <div class="menu-list">
+    <!-- MENU -->
+    <section class="menu" id="ponuka">
+      <div class="menu-inner">
+        <div class="menu-head reveal">
+          <span class="eyebrow"><img src="assets/mark-dark.png" alt="" />Čo pre vás pripravujeme</span>
+          <h2 class="menu-title h-display">Menu</h2>
+        </div>
 
-      <!-- Káva a teplé nápoje -->
-      <div class="menu-category">
-        <button class="menu-trigger" onclick="toggleMenu(this)">
-          <h3>Káva a teplé nápoje</h3>
-          <span class="menu-arrow">&#8964;</span>
-        </button>
-        <div class="menu-body">
-          <div class="menu-items">
-            <div class="menu-item"><span class="menu-item-name">Espresso</span><span class="menu-item-price">2,50 €</span></div>
-            <div class="menu-item"><span class="menu-item-name">Doppio</span><span class="menu-item-price">3,00 €</span></div>
-            <div class="menu-item"><span class="menu-item-name">Cappuccino</span><span class="menu-item-price">3,50 €</span></div>
-            <div class="menu-item"><span class="menu-item-name">Flat white</span><span class="menu-item-price">3,80 €</span></div>
-            <div class="menu-item"><span class="menu-item-name">Latte</span><span class="menu-item-price">3,80 €</span></div>
-            <div class="menu-item"><span class="menu-item-name">Filter káva</span><span class="menu-item-price">3,50 €</span></div>
-            <div class="menu-item"><span class="menu-item-name">Horúca čokoláda</span><span class="menu-item-price">3,80 €</span></div>
+        <div class="tabs" role="tablist" aria-label="Kategórie menu">
+          <button class="tab" role="tab" aria-selected="true"  aria-controls="p-kava"   id="t-kava">Káva a teplé nápoje</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="p-nealko" id="t-nealko" tabindex="-1">Nealko</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="p-alko"   id="t-alko" tabindex="-1">Alko</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="p-slane"  id="t-slane" tabindex="-1">Slané</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="p-sladke" id="t-sladke" tabindex="-1">Sladké</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="p-sezon"  id="t-sezon" tabindex="-1">Špeciálna sezónna ponuka</button>
+        </div>
+
+        <div class="panel active" role="tabpanel" id="p-kava" aria-labelledby="t-kava">
+          <ul class="menu-items">
+            <li class="menu-item"><span class="name">Espresso</span><span class="leader"></span><span class="price">2,50 €</span></li>
+            <li class="menu-item"><span class="name">Doppio</span><span class="leader"></span><span class="price">3,00 €</span></li>
+            <li class="menu-item"><span class="name">Cappuccino</span><span class="leader"></span><span class="price">3,50 €</span></li>
+            <li class="menu-item"><span class="name">Flat white</span><span class="leader"></span><span class="price">3,80 €</span></li>
+            <li class="menu-item"><span class="name">Latte</span><span class="leader"></span><span class="price">3,80 €</span></li>
+            <li class="menu-item"><span class="name">Filter káva</span><span class="leader"></span><span class="price">3,50 €</span></li>
+            <li class="menu-item"><span class="name">Horúca čokoláda</span><span class="leader"></span><span class="price">3,80 €</span></li>
+          </ul>
+        </div>
+
+        <div class="panel" role="tabpanel" id="p-nealko" aria-labelledby="t-nealko">
+          <ul class="menu-items">
+            <li class="menu-item"><span class="name">Domáca limonáda</span><span class="leader"></span><span class="price">3,50 €</span></li>
+            <li class="menu-item"><span class="name">Iced matcha latte</span><span class="leader"></span><span class="price">4,20 €</span></li>
+            <li class="menu-item"><span class="name">Fresh džús</span><span class="leader"></span><span class="price">3,80 €</span></li>
+            <li class="menu-item"><span class="name">Iced coffee</span><span class="leader"></span><span class="price">3,80 €</span></li>
+          </ul>
+        </div>
+
+        <div class="panel" role="tabpanel" id="p-alko" aria-labelledby="t-alko">
+          <ul class="menu-items">
+            <li class="menu-item"><span class="name">Víno — pohár</span><span class="leader"></span><span class="price">od 3,50 €</span></li>
+            <li class="menu-item"><span class="name">Pivo čapované</span><span class="leader"></span><span class="price">od 2,50 €</span></li>
+            <li class="menu-item"><span class="name">Espresso martini</span><span class="leader"></span><span class="price">7,50 €</span></li>
+            <li class="menu-item"><span class="name">Aperol Spritz</span><span class="leader"></span><span class="price">6,50 €</span></li>
+          </ul>
+        </div>
+
+        <div class="panel" role="tabpanel" id="p-slane" aria-labelledby="t-slane">
+          <ul class="menu-items">
+            <li class="menu-item"><span class="name">Croissant so šunkou</span><span class="leader"></span><span class="price">4,50 €</span></li>
+            <li class="menu-item"><span class="name">Avokádo toast</span><span class="leader"></span><span class="price">6,50 €</span></li>
+            <li class="menu-item"><span class="name">Brunch tanier</span><span class="leader"></span><span class="price">9,50 €</span></li>
+            <li class="menu-item"><span class="name">Granola s jogurtom</span><span class="leader"></span><span class="price">5,50 €</span></li>
+          </ul>
+        </div>
+
+        <div class="panel" role="tabpanel" id="p-sladke" aria-labelledby="t-sladke">
+          <ul class="menu-items">
+            <li class="menu-item solo"><span class="name">Domáce koláčiky podľa aktuálnej ponuky</span></li>
+          </ul>
+        </div>
+
+        <div class="panel" role="tabpanel" id="p-sezon" aria-labelledby="t-sezon">
+          <ul class="menu-items">
+            <li class="menu-item"><span class="name">Sezónny signature drink</span><span class="leader"></span><span class="price">5,50 €</span></li>
+            <li class="menu-item"><span class="name">Sezónny koláč</span><span class="leader"></span><span class="price">4,50 €</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAKES -->
+    <section class="cakes" id="torty">
+      <div class="cakes-card reveal">
+        <div class="cakes-text">
+          <span class="eyebrow"><img src="assets/mark-dark.png" alt="" />Na objednávku</span>
+          <h2 class="cakes-title h-display">Celé torty <strong>a&nbsp;dezerty</strong></h2>
+          <p>Oslava, narodeniny alebo len tak? Pripravíme vám celú tortu či dezert na deň, ktorý si vyberiete.</p>
+          <ol class="cakes-steps">
+            <li><span>1</span>Vyberte si tortu</li>
+            <li><span>2</span>Zvoľte dátum vyzdvihnutia</li>
+            <li><span>3</span>Po potvrdení objednávky vám príde e-mail</li>
+          </ol>
+          <a href="https://tally.so/r/OQ7Rjg" class="btn btn-mint" id="cakeOrderBtn" target="_blank" rel="noopener">Objednať tortu <span class="arrow">→</span></a>
+        </div>
+        <div class="cakes-photo">
+          <img src="img1.jpg" alt="Torta s malinami" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="kontakt">
+      <img class="contact-bg-mark" src="assets/mark-light.png" alt="" aria-hidden="true" />
+      <div class="contact-inner">
+        <div class="reveal">
+          <span class="eyebrow"><img src="assets/mark-light.png" alt="" />Kontakt</span>
+          <h2 class="contact-title h-display">Zastavte sa<br /><strong>u nás</strong></h2>
+          <div class="info-grid">
+            <div class="info-block">
+              <div class="label">Adresa</div>
+              <div class="value"><a href="https://maps.google.com/?q=Ro%C5%BE%C5%88avsk%C3%A1+1114%2F11%2C+045+01+Moldava+nad+Bodvou" target="_blank" rel="noopener">Rožňavská 1114/11,<br />045 01 Moldava nad Bodvou</a></div>
+            </div>
+            <div class="info-block">
+              <div class="label">Otváracie hodiny</div>
+              <div class="value">Po – Pi&nbsp;&nbsp;7:30 – 20:00<br />So – Ne&nbsp;&nbsp;9:00 – 20:00</div>
+            </div>
           </div>
+          <div class="socials">
+            <a href="https://www.instagram.com/kaviarenmlyncek/" class="social" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              @kaviarenmlyncek
+            </a>
+            <a href="https://www.facebook.com/share/1AC4uYZB6a/" class="social" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              Facebook
+            </a>
+          </div>
+        </div>
+        <div class="map reveal">
+          <iframe
+            src="https://maps.google.com/maps?q=Ro%C5%BE%C5%88avsk%C3%A1+1114%2F11%2C+045+01+Moldava+nad+Bodvou&output=embed"
+            title="Poloha Mlynček"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
         </div>
       </div>
 
-      <!-- Nealko -->
-      <div class="menu-category">
-        <button class="menu-trigger" onclick="toggleMenu(this)">
-          <h3>Nealko</h3>
-          <span class="menu-arrow">&#8964;</span>
-        </button>
-        <div class="menu-body">
-          <div class="menu-items">
-            <div class="menu-item"><span class="menu-item-name">Domáca limonáda</span><span class="menu-item-price">3,50 €</span></div>
-            <div class="menu-item"><span class="menu-item-name">Iced matcha latte</span><span class="menu-item-price">4,20 €</span></div>
-            <div class="menu-item"><span class="menu-item-name">Fresh džús</span><span class="menu-item-price">3,80 €</span></div>
-            <div class="menu-item"><span class="menu-item-name">Iced coffee</span><span class="menu-item-price">3,80 €</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Alko -->
-      <div class="menu-category">
-        <button class="menu-trigger" onclick="toggleMenu(this)">
-          <h3>Alko</h3>
-          <span class="menu-arrow">&#8964;</span>
-        </button>
-        <div class="menu-body">
-          <div class="menu-items">
-            <div class="menu-item"><span class="menu-item-name">Víno — pohár</span><span class="menu-item-price">od 3,50 €</span></div>
-            <div class="menu-item"><span class="menu-item-name">Pivo čapované</span><span class="menu-item-price">od 2,50 €</span></div>
-            <div class="menu-item"><span class="menu-item-name">Espresso martini</span><span class="menu-item-price">7,50 €</span></div>
-            <div class="menu-item"><span class="menu-item-name">Aperol Spritz</span><span class="menu-item-price">6,50 €</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Slané -->
-      <div class="menu-category">
-        <button class="menu-trigger" onclick="toggleMenu(this)">
-          <h3>Slané</h3>
-          <span class="menu-arrow">&#8964;</span>
-        </button>
-        <div class="menu-body">
-          <div class="menu-items">
-            <div class="menu-item"><span class="menu-item-name">Croissant so šunkou</span><span class="menu-item-price">4,50 €</span></div>
-            <div class="menu-item"><span class="menu-item-name">Avokádo toast</span><span class="menu-item-price">6,50 €</span></div>
-            <div class="menu-item"><span class="menu-item-name">Brunch tanier</span><span class="menu-item-price">9,50 €</span></div>
-            <div class="menu-item"><span class="menu-item-name">Granola s jogurtom</span><span class="menu-item-price">5,50 €</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Sladké -->
-      <div class="menu-category">
-        <button class="menu-trigger" onclick="toggleMenu(this)">
-          <h3>Sladké</h3>
-          <span class="menu-arrow">&#8964;</span>
-        </button>
-        <div class="menu-body">
-          <div class="menu-items">
-            <div class="menu-item"><span class="menu-item-name">Domáce koláčiky podľa aktuálnej ponuky</span><span class="menu-item-price"></span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Špeciálna sezónna ponuka -->
-      <div class="menu-category">
-        <button class="menu-trigger" onclick="toggleMenu(this)">
-          <h3>Špeciálna sezónna ponuka</h3>
-          <span class="menu-arrow">&#8964;</span>
-        </button>
-        <div class="menu-body">
-          <div class="menu-items">
-            <div class="menu-item"><span class="menu-item-name">Sezónny signature drink</span><span class="menu-item-price">5,50 €</span></div>
-            <div class="menu-item"><span class="menu-item-name">Sezónny koláč</span><span class="menu-item-price">4,50 €</span></div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- INFO / CONTACT -->
-  <section class="info" id="kontakt">
-    <div class="info-map">
-      <iframe
-        src="https://maps.google.com/maps?q=Ro%C5%BE%C5%88avsk%C3%A1+1114%2F11%2C+045+01+Moldava+nad+Bodvou&output=embed"
-        title="Poloha Mlynček"
-        loading="lazy"
-        allowfullscreen
-      ></iframe>
-    </div>
-    <div class="info-content">
-      <h2 class="info-title">Zastavte sa u nás</h2>
-      <ul class="info-list">
-        <li>
-          <strong>Adresa</strong>
-          <span>Rožňavská 1114/11,<br/>045 01 Moldava nad Bodvou</span>
-        </li>
-        <li>
-          <strong>Po – Pi</strong>
-          <span>7:30 – 20:00</span>
-        </li>
-        <li>
-          <strong>So – Ne</strong>
-          <span>9:00 – 20:00</span>
-        </li>
-        <li>
-          <strong>Instagram</strong>
-          <span>@mlyncek.moldava</span>
-        </li>
-      </ul>
-      <div class="social-links">
-        <a href="https://instagram.com/mlyncek.moldava" class="social-link" target="_blank" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-          </svg>
-        </a>
-        <a href="https://facebook.com/mlyncek" class="social-link" target="_blank" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-          </svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <span>© 2025 Mlynček · Moldava nad Bodvou · Prvá specialty kaviareň v meste</span>
-  </footer>
+      <footer class="footer">
+        <img class="footer-logo" src="assets/logo-light.png" alt="Mlynček" />
+        <small>© <span id="year">2025</span> Mlynček · Moldava nad Bodvou · Prvá specialty kaviareň v meste</small>
+      </footer>
+    </section>
+  </main>
 
   <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-    <img id="lightbox-img" src="" alt="" />
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Fotografia">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Zavrieť">✕</button>
+    <img id="lightboxImg" src="" alt="" />
   </div>
 
   <script>
-    function toggleNav() {
-      document.getElementById('navLinks').classList.toggle('open');
-      document.getElementById('navHamburger').classList.toggle('open');
+    // Nav
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', String(open));
+    });
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }));
+
+    // Open now badge (Po–Pi 7:30–20:00, So–Ne 9:00–20:00)
+    (function () {
+      const now = new Date();
+      const day = now.getDay();
+      const mins = now.getHours() * 60 + now.getMinutes();
+      const weekend = day === 0 || day === 6;
+      const openAt = weekend ? 9 * 60 : 7 * 60 + 30;
+      const closeAt = 20 * 60;
+      const isOpen = mins >= openAt && mins < closeAt;
+      const tag = document.getElementById('openTag');
+      document.getElementById('openText').textContent = isOpen ? 'Práve máme otvorené' : 'Teraz máme zatvorené';
+      tag.classList.toggle('closed', !isOpen);
+      tag.hidden = false;
+    })();
+
+    // Menu tabs
+    const tabs = Array.from(document.querySelectorAll('.tab'));
+    function selectTab(tab) {
+      tabs.forEach(t => {
+        const sel = t === tab;
+        t.setAttribute('aria-selected', String(sel));
+        t.tabIndex = sel ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).classList.toggle('active', sel);
+      });
     }
-
-    function closeNav() {
-      document.getElementById('navLinks').classList.remove('open');
-      document.getElementById('navHamburger').classList.remove('open');
-    }
-
-    function toggleMenu(btn) {
-      const cat = btn.closest('.menu-category');
-      const isOpen = cat.classList.contains('open');
-      document.querySelectorAll('.menu-category.open').forEach(c => c.classList.remove('open'));
-      if (!isOpen) cat.classList.add('open');
-    }
-
-    let galleryIndex = 0;
-    let galleryTimer = null;
-
-    function slideGallery(dir) {
-      const track = document.getElementById('galleryTrack');
-      const items = track.querySelectorAll('.gallery-item');
-      const total = items.length;
-      const visible = 2;
-      const max = total - visible;
-
-      galleryIndex += dir;
-      if (galleryIndex > max) galleryIndex = 0;
-      if (galleryIndex < 0) galleryIndex = max;
-
-      const itemWidth = items[0].offsetWidth + 12;
-      track.style.transform = `translateX(-${galleryIndex * itemWidth}px)`;
-    }
-
-    function startGalleryAuto() {
-      galleryTimer = setInterval(() => slideGallery(1), 3000);
-    }
-
-    function resetGalleryAuto() {
-      clearInterval(galleryTimer);
-      startGalleryAuto();
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      startGalleryAuto();
-
-      const wrapper = document.getElementById('galleryTrack').closest('.gallery-carousel');
-      wrapper.addEventListener('mouseenter', () => clearInterval(galleryTimer));
-      wrapper.addEventListener('mouseleave', () => startGalleryAuto());
-
-      // Swipe
-      let touchStartX = 0;
-      wrapper.addEventListener('touchstart', e => {
-        touchStartX = e.touches[0].clientX;
-        clearInterval(galleryTimer);
-      }, { passive: true });
-
-      wrapper.addEventListener('touchend', e => {
-        const diff = touchStartX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 40) {
-          slideGallery(diff > 0 ? 1 : -1);
-          resetGalleryAuto();
-        } else {
-          startGalleryAuto();
-        }
-      }, { passive: true });
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => selectTab(tab));
+      tab.addEventListener('keydown', e => {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        const next = tabs[(i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length];
+        selectTab(next);
+        next.focus();
+      });
     });
 
-    function openLightbox(src) {
-      const lb = document.getElementById('lightbox');
-      const img = document.getElementById('lightbox-img');
-      img.src = src;
+    // Gallery rail
+    const rail = document.getElementById('rail');
+    document.querySelectorAll('.round-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const step = rail.querySelector('.rail-item').offsetWidth + 16;
+        rail.scrollBy({ left: step * Number(btn.dataset.dir), behavior: 'smooth' });
+      });
+    });
+
+    // Lightbox
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    let lastFocus = null;
+    function openLightbox(src, alt) {
+      lastFocus = document.activeElement;
+      lbImg.src = src;
+      lbImg.alt = alt;
       lb.classList.add('open');
       document.body.style.overflow = 'hidden';
+      document.getElementById('lightboxClose').focus();
     }
-
     function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('open');
+      lb.classList.remove('open');
       document.body.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
     }
+    rail.querySelectorAll('.rail-item').forEach(item => {
+      item.addEventListener('click', () => openLightbox(item.dataset.src, item.querySelector('img').alt));
+    });
+    lb.addEventListener('click', e => { if (e.target !== lbImg) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeLightbox();
+    // Reveal on scroll
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Objednávka torty – Tally formulár ako okno priamo na stránke
+    // (ak sa Tally skript nenačíta, odkaz otvorí formulár v novej karte)
+    document.getElementById('cakeOrderBtn').addEventListener('click', e => {
+      if (window.Tally && typeof window.Tally.openPopup === 'function') {
+        e.preventDefault();
+        window.Tally.openPopup('OQ7Rjg', { layout: 'modal', width: 720, overlay: true });
+      }
     });
   </script>
-
+  <script async src="https://tally.so/widgets/embed.js"></script>
 </body>
 </html>
